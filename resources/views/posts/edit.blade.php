@@ -4,17 +4,17 @@
 
 @section('content')
 
-<form method="POST" action="{{Route('posts.update' , ['id' => $user['id'] ])}}">
+<form method="POST" action="{{Route('posts.update' , ['id' => $user['P_id'] ])}}">
     @method('PUT')
     @csrf
     <div class="mb-3" >
       <label for="exampleInputEmail1" class="form-label">Title</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" value="{{$user['name']}}">
+      <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" value="{{$user['title']}}">
 
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Body</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" name="body" value="{{$user['email']}}">.
+      <input type="text" class="form-control" id="exampleInputPassword1" name="body" value="{{$user['body']}}">.
 
     </div>
     <div class="form-check">

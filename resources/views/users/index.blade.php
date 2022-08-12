@@ -9,6 +9,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Number Of Posts </th>
         <th>Actions</th>
 
     </tr>
@@ -21,6 +22,8 @@
         <td>{{$user['id']}}</td>
         <td><a href="{{ Route('users.show',['id'=>$user['id'] ]) }}">{{$user['name']}}</a></td>
         <td>{{$user['email']}}</td>
+        <td>{{$user->posts_count}}</td>
+
         <td><div class="row text-center">
             <div class="col-md-6 "><a href="{{ Route('users.edit',['id'=>$user['id'] ]) }}" class="btn btn-primary">Edit</a>
 

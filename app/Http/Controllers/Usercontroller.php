@@ -9,7 +9,7 @@ class Usercontroller extends Controller
     //
     public function index()
     {
-        $users = User::simplePaginate(15);
+        $users = User::withCount('posts')->simplePaginate(15);
 
 
         return view('users.index')->with(["users" => $users]);
@@ -30,8 +30,9 @@ class Usercontroller extends Controller
     }
     public function show($id)
     {
+        $posts = User::find($id)->posts;
 
-        return dd(User::find($id));
+        return view('users.show')->with(["user" => User::find($id),"posts" => $posts] );
     }
 
 

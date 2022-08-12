@@ -43,4 +43,8 @@ class post extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+        }
 }

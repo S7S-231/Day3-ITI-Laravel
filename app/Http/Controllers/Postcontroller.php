@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\post;
 use Illuminate\Http\Request;
-//use App\Models\User;
+use App\Models\User;
 
 class Postcontroller extends Controller
 {
     //
     public function index()
     {
-        $users = post::simplePaginate(15);
+        $posts = post::simplePaginate(15);
 
 
-        return view('posts.index')->with(["users" => $users]);
+
+        return view('posts.index')->with(["posts" => $posts  ]);
     }
     public function create()
     {
@@ -26,17 +27,17 @@ class Postcontroller extends Controller
         $email = $req->input('body');
         $pass = $req->input('r1');
 
-        $ud = $req->input('Uid');
+
 
         post::create(
-        ['title' => $name , 'body' => $email , 'enabled' => $pass , 'user_id' => $ud]);
+        ['title' => $name , 'body' => $email , 'enabled' => $pass ,'user_id' => auth()->user()->id ]);
 
         return redirect()->Route("posts.index");
     }
     public function show($id)
     {
 
-        return dd(post::find($id));
+        return dd(post::where('P_id', $id)->get());
     }
 
 
@@ -58,15 +59,16 @@ class Postcontroller extends Controller
         $name = $req->input('name');
         $email = $req->input('body');
         $pass = $req->input('r1');
+        $ud = $req->input('uid');
 
 
-            post::find($id)->update(['title'=> $name , 'body'=> $email , 'enabled' => $pass ]);
+            post::find($id)->update(['title'=> $name , 'body'=> $email , 'enabled' => $pass , 'user_id' => $ud]);
 
             return redirect()->Route("posts.index");
     }
        public function destroy($id)
        {
-        post::where('id', $id)->delete();
+        post::where('P_id', $id)->delete();
 
         return redirect()->Route("posts.index");
 
@@ -85,7 +87,7 @@ class Postcontroller extends Controller
     public function restore($id){
 
 
-        post::onlyTrashed()->find($id)->restore();
+        post::onlyTrashed()->where('P_id', $id)->restore();
 
 
         return redirect()->route('posts.dlist');

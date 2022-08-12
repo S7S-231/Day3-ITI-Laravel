@@ -20,9 +20,10 @@ class postFactory extends Factory
         return [
             'title' => fake()->title(),
             'body' => fake()->paragraph(),
-            'enabled' => (bool)rand(0,1),
+            'enabled' => fake()->boolean,
             'published_at' =>  date("Y-m-d H:i:s", strtotime('now')),
-            'user_id' => fake()->randomNumber(),
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+
         ];
     }
 

@@ -18,11 +18,8 @@
       <input type="text" name="body" class="form-control" id="exampleInputPassword1">.
 
     </div>
-    <div class="mb-3" >
-        <label for="exampleInputEmail1" class="form-label">User ID</label>
-        <input type="number" name="Uid" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
 
-      </div>
 
     <div class="form-check">
         <input class="form-check-input" type="radio" name="r1" value="0" id="flexRadioDefault1">
